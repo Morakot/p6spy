@@ -41,7 +41,7 @@ So following would be valid JDBC URLs:
 
 Please note, that all the properties that support connection specific overriding have it explicitly mentioned in the config file (as well as in the [Common Property File Settings](#settings) section), stating: `(available as a connection specific property)`.
 
-If you need yet unsupported properties to be set on this level, feel free to [raise a bug](https://github.com/p6spy/p6spy/issues/new) indicating that.
+If you need yet unsupported properties to be set on this level, feel free to [enter an issue](https://github.com/p6spy/p6spy/issues/new) indicating that.
 
 ## Properties exposal via JMX
 
