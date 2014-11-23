@@ -3,7 +3,7 @@
 Configuration follows **layered approach**, where **each layer overrides the values set by the lower ones** 
 (leaving those not provided unchanged):
 
-* Connection specific properties (see: [Connection specific properties](#connectionproperties))
+* [JDBC URL and Datasource specific properties](#urlproperties)
 * JMX set properties (please note, that these are reset on next reload)
 * System properties
 * Environment variables
@@ -11,7 +11,7 @@ Configuration follows **layered approach**, where **each layer overrides the val
 * defaults
 
 For the full list of available options, see the section [Common Property File Settings](#settings). 
-Please note that providing any of these via System properties/Environment variables/[Connection specific properties](#connectionproperties) is possible, using the particular 
+Please note that providing any of these via System properties/Environment variables/[JDBC URL or specific properties](#connectionproperties) is possible, using the particular 
 property name following naming rule: `p6spy.config.<property name>=<property value>`
 
 Please be aware of the restriction. In fact this also means you need to be aware of values set by the lower 
@@ -29,9 +29,9 @@ to locate the file.
 1. The current working directory (for relative path) or any directory (for absolute path)
 1. The classpath
 
-## <a name="connectionproperties">Connection specific properties</a>
+## <a name="urlproperties">JDBC URL and Datasource specific properties</a>
 
-Properties can be specific for particular connection. To provide multiple via JDBC URL, use ';' as a separator.
+Properties can be specific to particular JDBC URL or Datasource. To provide multiple via JDBC URL, use ';' as a separator.
 
 So following would be valid JDBC URLs: 
 
@@ -39,13 +39,13 @@ So following would be valid JDBC URLs:
 * `jdbc:p6spy:p6spy.config.<property name>=<property value>:mysql://<hostname>:<port>/<database>`
 * `jdbc:p6spy:p6spy.config.<property name>=<property value>;p6spy.config.<property name2>=<property value2>:mysql://<hostname>:<port>/<database>`
 
-Please note, that all the properties that support connection specific overriding have it explicitly mentioned in the config file (as well as in the [Common Property File Settings](#settings) section), stating: `(available as a connection specific property)`.
+Please note, that all the properties settable on this level have it explicitly mentioned in the config file (as well as in the [Common Property File Settings](#settings) section), stating: `(available as a JDBC URL/Datasource specific property)`.
 
 If you need yet unsupported properties to be set on this level, feel free to [enter an issue](https://github.com/p6spy/p6spy/issues/new) indicating that.
 
 ## Properties exposal via JMX
 
-Please note that all the properties are exposed via JMX (With one exception, namely: [Connection specific properties](#connectionproperties)). So you can use your tool of choice (e.g.,JConsole) to view/change them. 
+Please note that all the properties are exposed via JMX (With one exception, namely: [Connection specific properties](#urlproperties)). So you can use your tool of choice (e.g.,JConsole) to view/change them. 
 Moreover reload operation is exposed as well. To provide on-demand reload option.
 
 In the JConsole p6spy related JMX attributes might look like this:
@@ -165,10 +165,10 @@ in section: [Configuration and Usage](#confusage)):
 	# (default is none)
 	#jmxPrefix=
 	
-	# string id intended to be used for unique identification of connection
-	# it makes sence for the case that more connections are proxied via p6spy and 
-	# user tries to group log messages by connection.  
-	# (available as a connection specific property)
+	# String id intended to be used for unique identification of JDBC URL or Datasource.
+	# It makes sence for the case that more JDBC URLs/Datasources are proxied via P6Spy and 
+	# user tries to group log messages by these.  
+	# (available as a JDBC URL/Datasource specific property)
 	# (default is none)
 	#instanceId=
 
