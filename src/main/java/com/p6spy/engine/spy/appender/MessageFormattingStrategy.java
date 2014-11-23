@@ -27,6 +27,7 @@ public interface MessageFormattingStrategy {
   /**
    * Formats a log message for the logging module
    *
+   * @param instanceId   the id having value of property: instanceId (can be {@code null}, if not set).
    * @param connectionId the id of the connection
    * @param now          the current ime expressing in milliseconds
    * @param elapsed      the time in milliseconds that the operation took to complete
